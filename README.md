@@ -1,6 +1,5 @@
 <h1 align="center">Luna</h1>
 <div align="center">
- not the cloud gaming service by amazon...
 </div>
 
 <div align="center">
