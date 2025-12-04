@@ -7,7 +7,7 @@
 </div>
 
 <div align="center">
-  <img src="https://img.shields.io/github/stars/AceOfSpades1061/LunaOS?style=flat&color=yellow" />
+  <img src="https://img.shields.io/github/stars/AceOfSpades1061/LunaOS?style=flat&color=purple" />
 </div>
 
 ---
