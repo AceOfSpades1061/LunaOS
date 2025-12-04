@@ -1,4 +1,4 @@
-<h1 align="center">Luna</h1>
+<h1 align="center">LunaOS</h1>
 <div align="center">
 </div>
 
@@ -12,4 +12,4 @@
 
 ---
 
-Luna is a _(Work-In-Progress)_ interception-based proxy designed to evade web browser restrictions and support lots of sites. It prioitizes security, speed, and concealment
+LunaOS is a _(Work-In-Progress)_ "WebOS" that uses an interception-based proxy designed to evade web browser restrictions and (supposed to) support lots of sites. It prioritizes security, speed, and concealment
