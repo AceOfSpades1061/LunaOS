@@ -36,8 +36,8 @@
     }
     
     .dock img {
-        width: 36px;
-        height: 36px;
+        width: 43px;
+        height: 43px;
         object-fit: contain;
         pointer-events: none;
     }
