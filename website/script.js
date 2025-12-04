@@ -67,29 +67,32 @@ function createWindow(title, appURL) {
 
     let prev = {};
 
-    function maximizeToggle() {
-        if (!win.classList.contains("maximized")) {
-            prev = {
-                left: win.style.left,
-                top: win.style.top,
-                width: win.style.width,
-                height: win.style.height
-            };
+function maximizeToggle() {
+    const topBarHeight = 40; // <-- set to your actual bar height
 
-            win.classList.add("maximized");
-            win.style.left = "0px";
-            win.style.top = "0px";
-            win.style.width = window.innerWidth + "px";
-            win.style.height = window.innerHeight + "px";
+    if (!win.classList.contains("maximized")) {
+        prev = {
+            left: win.style.left,
+            top: win.style.top,
+            width: win.style.width,
+            height: win.style.height
+        };
 
-        } else {
-            win.classList.remove("maximized");
-            win.style.left = prev.left;
-            win.style.top = prev.top;
-            win.style.width = prev.width;
-            win.style.height = prev.height;
-        }
+        win.classList.add("maximized");
+        win.style.left = "0px";
+        win.style.top = topBarHeight + "px"; // <-- DO NOT TOUCH THE BAR
+        win.style.width = window.innerWidth + "px";
+        win.style.height = (window.innerHeight - topBarHeight) + "px";
+
+    } else {
+        win.classList.remove("maximized");
+        win.style.left = prev.left;
+        win.style.top = prev.top;
+        win.style.width = prev.width;
+        win.style.height = prev.height;
     }
+}
+
 
     maxBtn.onclick = maximizeToggle;
     header.ondblclick = maximizeToggle;
