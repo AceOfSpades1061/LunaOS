@@ -15,6 +15,8 @@
 LunaOS is a _(Work-In-Progress)_ WebOS that uses the [Scramjet Proxy](github.com/MercuryWorkshop/Scramjet) by [Mercury Workshop](github.com/MercuryWorkshop) for browsing the web privately. It prioritizes security, speed, and concealment
 
 # Setup
+>[!WARNING]
+>This is only the UI since i'm still working on a proxy :[[
 ```
 node server.js
 ```
