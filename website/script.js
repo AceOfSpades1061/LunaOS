@@ -1,0 +1,151 @@
+const dockItems = document.querySelectorAll('.dock li');
+const label = document.getElementById('dockLabel');
+let zCounter = 10;
+
+/* -------------------- DOCK LABEL + BOUNCE -------------------- */
+dockItems.forEach(item => {
+
+    item.addEventListener('mouseenter', () => {
+        label.textContent = item.dataset.label;
+        const rect = item.getBoundingClientRect();
+        label.style.left = rect.left + rect.width/2 - label.offsetWidth/2 + "px";
+        label.style.opacity = "1";
+        label.style.transform = "translateY(0)";
+    });
+
+    item.addEventListener('mouseleave', () => {
+        label.style.opacity = "0";
+        label.style.transform = "translateY(10px)";
+    });
+
+    item.addEventListener("click", () => {
+        item.classList.add("bouncing");
+        setTimeout(() => item.classList.remove("bouncing"), 600);
+
+        createWindow(
+            item.dataset.label,
+            item.dataset.url
+        );
+    });
+
+});
+
+/* -------------------- WINDOW CREATION -------------------- */
+function createWindow(title, appURL) {
+    const win = document.createElement("div");
+    win.className = "window";
+    win.style.top = "120px";
+    win.style.left = "120px";
+    win.style.zIndex = zCounter++;
+
+    win.innerHTML = `
+        <div class="window-header">
+            <div class="window-buttons">
+                <div class="btn close"></div>
+                <div class="btn maximize"></div>
+            </div>
+            <span class="window-title">${title}</span>
+        </div>
+        <iframe src="${appURL}" 
+                style="width:100%; height:100%; border:0; background:transparent;">
+        </iframe>
+    `;
+
+    document.getElementById("window-container").appendChild(win);
+
+    /* -------------------- CLOSE BUTTON -------------------- */
+    win.querySelector(".btn.close").onclick = () => win.remove();
+
+    /* -------------------- BRING TO FRONT -------------------- */
+    win.addEventListener("mousedown", () => {
+        win.style.zIndex = zCounter++;
+    });
+
+    /* -------------------- MAXIMIZE / RESTORE -------------------- */
+    const maxBtn = win.querySelector(".btn.maximize");
+    const header = win.querySelector(".window-header");
+
+    let prev = {};
+
+    function maximizeToggle() {
+        if (!win.classList.contains("maximized")) {
+            prev = {
+                left: win.style.left,
+                top: win.style.top,
+                width: win.style.width,
+                height: win.style.height
+            };
+
+            win.classList.add("maximized");
+            win.style.left = "0px";
+            win.style.top = "0px";
+            win.style.width = window.innerWidth + "px";
+            win.style.height = window.innerHeight + "px";
+
+        } else {
+            win.classList.remove("maximized");
+            win.style.left = prev.left;
+            win.style.top = prev.top;
+            win.style.width = prev.width;
+            win.style.height = prev.height;
+        }
+    }
+
+    maxBtn.onclick = maximizeToggle;
+    header.ondblclick = maximizeToggle;
+
+    /* -------------------- DRAGGING (NO DELAY) -------------------- */
+    let offsetX, offsetY, dragging = false;
+
+    header.addEventListener("mousedown", e => {
+        if (e.target.classList.contains("btn") || win.classList.contains("maximized")) return;
+
+        dragging = true;
+        offsetX = e.clientX - win.offsetLeft;
+        offsetY = e.clientY - win.offsetTop;
+
+        win.classList.add("no-transition");  // Disable easing for instant drag
+        header.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", e => {
+        if (!dragging) return;
+        win.style.left = (e.clientX - offsetX) + "px";
+        win.style.top = (e.clientY - offsetY) + "px";
+    });
+
+    document.addEventListener("mouseup", () => {
+        if (!dragging) return;
+        dragging = false;
+        win.classList.remove("no-transition");  // Re-enable transition after drag
+        header.style.cursor = "grab";
+    });
+}
+
+function updateClock() {
+    const now = new Date();
+
+    const options = {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+    };
+
+    document.getElementById("clock").textContent =
+        now.toLocaleString("en-US", options);
+}
+
+setInterval(updateClock, 1000);
+updateClock(); 
+
+fetch("greetings.json")
+  .then(response => response.json())
+  .then(data => {
+      const greetings = data.greetings;
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+      document.getElementById("greetings").textContent = randomGreeting;
+  })
+  .catch(error => console.error("Error loading greetings:", error));
