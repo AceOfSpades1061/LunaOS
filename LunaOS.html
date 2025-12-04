@@ -132,7 +132,7 @@ function createWindow(title, appURL) {
         offsetX = e.clientX - win.offsetLeft;
         offsetY = e.clientY - win.offsetTop;
 
-        win.classList.add("no-transition");  // 🚀 Disable easing for instant drag
+        win.classList.add("no-transition");  // Disable easing for instant drag
         header.style.cursor = "grabbing";
     });
 
@@ -145,8 +145,9 @@ function createWindow(title, appURL) {
     document.addEventListener("mouseup", () => {
         if (!dragging) return;
         dragging = false;
-        win.classList.remove("no-transition");  // ↩️ Re-enable transition after drag
+        win.classList.remove("no-transition");  // Re-enable transition after drag
         header.style.cursor = "grab";
     });
 }
 </script>
+
