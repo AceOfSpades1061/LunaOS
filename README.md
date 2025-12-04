@@ -12,7 +12,7 @@
 
 ---
 
-LunaOS is a _(Work-In-Progress)_ WebOS that uses an interception-based proxy designed to evade web browser restrictions and (supposed to) support lots of sites. It prioritizes security, speed, and concealment
+LunaOS is a _(Work-In-Progress)_ WebOS that uses the [Scramjet Proxy](github.com/MercuryWorkshop/Scramjet) by [Mercury Workshop](github.com/MercuryWorkshop) for browsing the web privately. It prioritizes security, speed, and concealment
 
 # Setup
 ```
