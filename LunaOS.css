@@ -1,0 +1,142 @@
+    body {
+        margin: 0;
+        background-image: url("https://512pixels.net/downloads/macos-wallpapers-6k/26-Tahoe-Dark-6K.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        font-family: sans-serif;
+    }
+
+    .dock {
+        display: flex;
+        gap: 22px;
+        padding: 16px 22px;
+        background: rgba(30, 30, 30, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        margin-bottom: 25px;
+        outline: 2px solid rgba(255, 255, 255, 0.37);
+    }
+
+    .dock li {
+        list-style: none;
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.25s ease, background 0.25s;
+        cursor: pointer;
+    }
+    
+    .dock img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        pointer-events: none;
+    }
+
+    .dock li:hover {
+        transform: scale(1.25);
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .dock li:active {
+        transform: scale(1.15);
+        background: rgba(255,255,255, 0.5);
+    }
+
+    .label {
+        position: absolute;
+        bottom: 110px;
+        padding: 7.5px 12px;
+        background: #353535;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 14px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.2s, transform 0.2s;
+        pointer-events: none;
+    }
+
+    .window {
+        position: absolute;
+        width: 500px;
+        height: 350px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    }
+
+    .window-header {
+        height: 32px;
+        background: rgba(255,255,255, 0.12);
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        cursor: grab;
+        user-select: none;
+    }
+
+    .window-buttons {
+        display: flex;
+        gap: 8px;
+        margin-right: 10px;
+    }
+
+    .window-buttons .btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .btn.close { background: #ff5f57; }
+    .btn.minimize { background: #ffbd2e; }
+    .btn.maximize { background: #28c940; }
+
+    .window-title {
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        pointer-events: none;
+    }
+
+    .window-content {
+        padding: 15px;
+        color: #fff;
+    }
+
+    @keyframes dockBounce {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-18px); }
+    60% { transform: translateY(4px); }
+    100% { transform: translateY(0); }
+}
+
+    .dock li.bouncing {
+    animation: dockBounce 0.6s ease;
+}
+
+    .window.maximized {
+    transition: all 0.25s ease;
+}
+    .window:not(.maximized) {
+    transition: all 0.25s ease;
+}
+
+.window.no-transition {
+    transition: none;
+}
