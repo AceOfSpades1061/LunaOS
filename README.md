@@ -12,9 +12,14 @@
 
 ---
 
-LunaOS is a _(Work-In-Progress)_ "WebOS" that uses an interception-based proxy designed to evade web browser restrictions and (supposed to) support lots of sites. It prioritizes security, speed, and concealment
+LunaOS is a _(Work-In-Progress)_ WebOS that uses an interception-based proxy designed to evade web browser restrictions and (supposed to) support lots of sites. It prioritizes security, speed, and concealment
 
 # Setup
-Sadly, LunaOS is unusable right now due to having no backend :[
+```
+node server.js
+```
 
-I'm working on it guys, trust me :]
+# Roadmap
+- UI Finished: ✅
+- Backend Finished: ✅
+- Proxy working: WIP
